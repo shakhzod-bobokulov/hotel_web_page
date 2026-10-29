@@ -1,0 +1,5 @@
+.env
+node_modules
+# Mehmonlarning ism/telefoni (PII) saqlanadi
+data/
+*.tmp

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grand Silk Hotel — Samarqand</title>
+  <meta name="description" content="Grand Silk Hotel — Samarqand markazidagi 5 yulduzli mehmonxona. Xonani xaritadan o'zingiz tanlang va onlayn band qiling.">
+  <meta name="theme-color" content="#0f2a43">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Grand Silk Hotel">
+  <meta property="og:title" content="Grand Silk Hotel — Samarqand">
+  <meta property="og:description" content="Samarqand markazidagi 5 yulduzli mehmonxona. Xonani xaritadan o'zingiz tanlang va onlayn band qiling.">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Grand Silk Hotel — Samarqand">
+  <meta name="twitter:description" content="Samarqand markazidagi 5 yulduzli mehmonxona. Xonani xaritadan o'zingiz tanlang va onlayn band qiling.">
+  <meta name="twitter:image" content="images/hero.jpg">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="preload" as="image" href="images/hero.jpg" fetchpriority="high">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Hotel",
+    "name": "Grand Silk Hotel",
+    "description": "Samarqand markazidagi 5 yulduzli mehmonxona.",
+    "image": "images/hero.jpg",
+    "telephone": "+998901234567",
+    "email": "info@grandsilk.uz",
+    "priceRange": "$60–$200",
+    "starRating": { "@type": "Rating", "ratingValue": "5" },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Registon ko'chasi 1",
+      "addressLocality": "Samarqand",
+      "addressCountry": "UZ"
+    }
+  }
+  </script>
+
+  <script>
+    // JS bor ekanini bildirish (.reveal faqat shunda yashiriladi) va mavzuni chizilishdan oldin o'rnatish
+    document.documentElement.classList.add('js');
+    try {
+      var th = localStorage.getItem('gs_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = th;
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="#main" class="skip" data-i18n="skip">Asosiy mazmunga o'tish</a>
+  <div class="progress" id="progress"></div>
+
+  <header class="header" id="header">
+    <a href="#home" class="logo"><i class="logo-gem"></i>Grand<span>Silk</span></a>
+    <nav class="nav" id="nav" data-i18n-aria="menu_aria" aria-label="Menyu">
+      <span class="nav-indicator" id="navInd"></span>
+      <a href="#home" class="active" data-i18n="nav_home">Bosh sahifa</a>
+      <a href="#rooms" data-i18n="nav_rooms">Xonalar</a>
+      <a href="#services" data-i18n="nav_services">Xizmatlar</a>
+      <a href="#booking" data-i18n="nav_pick">Xona tanlash</a>
+      <a href="#contact" data-i18n="nav_contact">Aloqa</a>
+    </nav>
+    <div class="tools">
+      <div class="lang" id="lang" role="group" data-i18n-aria="lang_aria" aria-label="Til">
+        <button type="button" data-l="uz" aria-pressed="false">UZ</button>
+        <button type="button" data-l="ru" aria-pressed="false">RU</button>
+        <button type="button" data-l="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="theme" id="theme" data-i18n-aria="theme_aria" aria-label="Tungi rejim" aria-pressed="false"><span class="knob"></span></button>
+      <a href="#booking" class="nav-cta" data-i18n="cta_book">Band qilish</a>
+      <button type="button" class="burger" id="burger" data-i18n-aria="menu_btn" aria-label="Menyu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="stars" id="stars"></div>
+    <div class="hero-text">
+      <span class="badge" data-i18n="hero_badge">Samarqand, Registon yonida · 5 yulduz</span>
+      <h1><span class="line" data-i18n="hero_l1">Qulaylik va</span> <span class="line gold" data-i18n="hero_l2">mehmondo'stlik</span> <span class="line" data-i18n="hero_l3">maskani</span></h1>
+      <p data-i18n="hero_p">Shahar markazidagi 5 yulduzli mehmonxona. Xonangizni xaritadan o'zingiz tanlang — bo'sh va band xonalar real vaqtda ko'rinib turadi.</p>
+      <div class="hero-btns">
+        <a href="#booking" class="btn" data-i18n="hero_btn1">Xonani tanlash</a>
+        <button type="button" class="btn ghost" id="heroAsk" data-i18n="hero_btn2">AI yordamchidan so'rash</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TODO: haqiqiy raqamlar bilan almashtiring (xona soni, tajriba, mehmonlar soni va reyting hozircha tasdiqlanmagan) -->
+  <section class="stats">
+    <div class="stat reveal"><b data-count="120">120</b><span data-i18n="st1">Hashamatli xona</span></div>
+    <div class="stat reveal"><b data-count="15">15</b><span data-i18n="st2">Yillik tajriba</span></div>
+    <div class="stat reveal"><b data-count="25000">25,000</b><span data-i18n="st3">Mamnun mehmon</span></div>
+    <div class="stat reveal"><b data-count="49">4.9</b><span data-i18n="st4">Reyting (10 dan)</span></div>
+  </section>
+
+  <section class="section" id="rooms">
+    <h2 class="reveal" data-i18n="rooms_h">Bizning xonalar</h2>
+    <div class="cards">
+      <article class="card reveal">
+        <div class="img"><img src="images/room1.jpg" width="1400" height="933" alt="Standart xona" data-i18n-alt="alt_r1" loading="lazy"></div>
+        <div class="card-body">
+          <h3 data-i18n="type_standart">Standart</h3>
+          <p data-i18n="r1_p">2 kishilik, Wi-Fi, konditsioner, nonushta.</p>
+          <strong><span data-price="standart">$60</span> <small data-i18n="per_night">/ kecha</small></strong>
+          <button type="button" class="btn sm pick" data-type="standart" data-i18n="pick_btn">Shu turdan tanlash</button>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="img"><img src="images/room2.jpg" width="1400" height="933" alt="Deluxe xona" data-i18n-alt="alt_r2" loading="lazy"></div>
+        <div class="card-body">
+          <h3 data-i18n="type_deluxe">Deluxe</h3>
+          <p data-i18n="r2_p">Keng xona, balkon, shahar manzarasi.</p>
+          <strong><span data-price="deluxe">$110</span> <small data-i18n="per_night">/ kecha</small></strong>
+          <button type="button" class="btn sm pick" data-type="deluxe" data-i18n="pick_btn">Shu turdan tanlash</button>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="img"><img src="images/room3.jpg" width="1400" height="1050" alt="Lyuks xona" data-i18n-alt="alt_r3" loading="lazy"></div>
+        <div class="card-body">
+          <h3 data-i18n="type_lyuks">Lyuks</h3>
+          <p data-i18n="r3_p">Mehmonxona + yotoqxona, jakuzi, VIP xizmat.</p>
+          <strong><span data-price="lyuks">$200</span> <small data-i18n="per_night">/ kecha</small></strong>
+          <button type="button" class="btn sm pick" data-type="lyuks" data-i18n="pick_btn">Shu turdan tanlash</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section alt" id="services">
+    <h2 class="reveal" data-i18n="services_h">Xizmatlar</h2>
+    <div class="services">
+      <div class="service reveal"><b>01</b><h3 data-i18n="s1_t">Restoran</h3><p data-i18n="s1_p">Milliy va Yevropa taomlari</p></div>
+      <div class="service reveal"><b>02</b><h3 data-i18n="s2_t">Basseyn va Spa</h3><p data-i18n="s2_p">Dam olish va sog'lomlashtirish</p></div>
+      <div class="service reveal"><b>03</b><h3 data-i18n="s3_t">Bepul Wi-Fi</h3><p data-i18n="s3_p">Barcha xonalarda tezkor internet</p></div>
+      <div class="service reveal"><b>04</b><h3 data-i18n="s4_t">Transfer</h3><p data-i18n="s4_p">Aeroport va vokzaldan olib ketish</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="booking">
+    <h2 class="reveal" data-i18n="pick_h">Xonani tanlang</h2>
+    <p class="sub reveal" data-i18n="pick_sub">Sanani belgilang — shu sanada bo'sh va band xonalar xaritada ko'rinadi.</p>
+
+    <div class="picker reveal">
+      <div class="picker-main">
+        <div class="dates">
+          <label><span data-i18n="lbl_in">Kelish sanasi</span> <input type="date" id="checkin"></label>
+          <label><span data-i18n="lbl_out">Ketish sanasi</span> <input type="date" id="checkout"></label>
+        </div>
+
+        <div class="filters" id="filters">
+          <button type="button" class="chip active" data-f="all" data-i18n="f_all">Barchasi</button>
+          <button type="button" class="chip" data-f="standart" data-i18n="f_standart">Standart · $60</button>
+          <button type="button" class="chip" data-f="deluxe" data-i18n="f_deluxe">Deluxe · $110</button>
+          <button type="button" class="chip" data-f="lyuks" data-i18n="f_lyuks">Lyuks · $200</button>
+        </div>
+
+        <div class="legend">
+          <span><i class="dot free"></i><span data-i18n="lg_free">Bo'sh</span> <b id="cntFree">0</b></span>
+          <span><i class="dot booked"></i><span data-i18n="lg_booked">Band</span> <b id="cntBooked">0</b></span>
+          <span><i class="dot sel"></i><span data-i18n="lg_sel">Tanlangan</span></span>
+        </div>
+
+        <div class="building" id="building"></div>
+      </div>
+
+      <aside class="summary" id="summary">
+        <h3 data-i18n="order_h">Buyurtma</h3>
+        <div class="sum-empty" id="sumEmpty" data-i18n="sum_empty">Xaritadan bo'sh xonani bosing</div>
+        <div class="sum-body" id="sumBody" hidden>
+          <div class="sum-room"><b id="sRoom"></b><span id="sType"></span></div>
+          <ul class="sum-list">
+            <li><span data-i18n="sum_date">Sana</span><b id="sDates"></b></li>
+            <li><span data-i18n="sum_nights">Kechalar</span><b id="sNights"></b></li>
+            <li><span data-i18n="sum_price">Narx / kecha</span><b id="sPrice"></b></li>
+            <li id="sDiscRow" hidden><span data-i18n="sum_disc">Chegirma</span><b id="sDisc"></b></li>
+          </ul>
+          <div class="sum-total"><span data-i18n="sum_total">Jami</span><b id="sTotal"></b></div>
+          <label class="sr-only" for="name" data-i18n="lbl_name">Ismingiz</label>
+          <input type="text" id="name" data-i18n-ph="ph_name" placeholder="Ismingiz" autocomplete="name" maxlength="80">
+          <label class="sr-only" for="phone" data-i18n="lbl_phone">Telefon raqam</label>
+          <input type="tel" id="phone" data-i18n-ph="ph_phone" placeholder="Telefon raqam" autocomplete="tel" inputmode="tel" maxlength="24">
+          <button type="button" class="btn full" id="confirm" data-i18n="btn_confirm">Band qilish</button>
+          <p class="sum-note" data-i18n="privacy">Ma'lumotlaringiz faqat bron uchun ishlatiladi.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div>
+      <h3>Grand Silk Hotel</h3>
+      <p data-i18n="foot_addr">Samarqand sh., Registon ko'chasi 1</p>
+      <p><a href="tel:+998901234567">+998 90 123 45 67</a></p>
+      <p><a href="mailto:info@grandsilk.uz">info@grandsilk.uz</a></p>
+    </div>
+    <p class="copy" data-i18n="foot_copy">© 2026 Grand Silk Hotel. Barcha huquqlar himoyalangan.</p>
+  </footer>
+
+  <button type="button" class="chat-fab" id="chatFab" data-i18n-aria="chat_open" aria-label="AI yordamchi" aria-expanded="false" aria-controls="chat"><span class="fab-ico">AI</span><span class="fab-ping"></span></button>
+  <div class="chat" id="chat" role="dialog" data-i18n-aria="chat_aria" aria-label="Silk AI yordamchi" tabindex="-1">
+    <div class="chat-head">
+      <div class="avatar">AI</div>
+      <div><b>Silk AI</b><small><i class="online"></i><span data-i18n="chat_sub">Onlayn yordamchi</span></small></div>
+      <button type="button" id="chatClose" data-i18n-aria="chat_close" aria-label="Yopish">&times;</button>
+    </div>
+    <div class="chat-msgs" id="chatMsgs" aria-live="polite"></div>
+    <form class="chat-form" id="chatForm">
+      <input type="text" id="chatInput" data-i18n-ph="chat_ph" data-i18n-aria="chat_ph" placeholder="Savolingizni yozing..." aria-label="Savolingizni yozing..." autocomplete="off" maxlength="500">
+      <button type="submit" id="chatSend" data-i18n-aria="chat_send" aria-label="Yuborish">&rsaquo;</button>
+    </form>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>

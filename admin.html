@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin — Grand Silk Hotel</title>
+  <script>
+    try { document.documentElement.dataset.theme = localStorage.getItem('gs_theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="neterr" id="netErr" role="alert" hidden>
+    <span>Server bilan aloqa yo'q — qayta urinish</span>
+    <button class="ghost" type="button" id="netRetry">Qayta urinish</button>
+  </div>
+
+  <!-- Kirish -->
+  <div class="login" id="loginView">
+    <form class="login-box" id="loginForm">
+      <div class="brand"><i class="gem"></i>Grand<span>Silk</span> <small>Admin</small></div>
+      <label for="password">Parol</label>
+      <div class="pw">
+        <input type="password" id="password" autocomplete="current-password" required autofocus>
+        <button class="ghost" type="button" id="pwToggle" aria-pressed="false" aria-controls="password">Ko'rsatish</button>
+      </div>
+      <button class="btn" type="submit" id="loginBtn">Kirish</button>
+      <p class="err" id="loginErr" role="alert"></p>
+      <a href="/" class="back">&larr; Saytga qaytish</a>
+    </form>
+  </div>
+
+  <!-- Panel -->
+  <div class="app" id="appView" hidden>
+    <header class="top">
+      <div class="brand"><i class="gem"></i>Grand<span>Silk</span> <small>Admin</small></div>
+      <div class="top-r">
+        <button class="ghost" id="refresh">Yangilash</button>
+        <button class="theme" id="theme" aria-label="Tungi rejim"><span class="knob"></span></button>
+        <a class="ghost" href="/" target="_blank" rel="noopener">Sayt</a>
+        <button class="ghost" id="logout">Chiqish</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="cards">
+        <div class="stat"><span>Bugun band xonalar</span><b id="stOcc">0</b><small id="stOccPct"></small></div>
+        <div class="stat"><span>Bugun bo'sh</span><b id="stFree">0</b><small id="stFreeSub"></small></div>
+        <div class="stat"><span>Faol band qilishlar</span><b id="stActive">0</b><small>bugun va kelgusi</small></div>
+        <div class="stat"><span>Kelgusi tushum</span><b id="stFut">$0</b><small id="stFutSub">ketish sanasi bugun va keyin</small></div>
+        <div class="stat"><span>Jami tasdiqlangan</span><b id="stRev">$0</b><small id="stRevSub"></small></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-h">
+          <h2>Bugungi xonalar holati</h2>
+          <div class="legend"><span><i class="dot free"></i>Bo'sh</span><span><i class="dot booked"></i>Band</span><span><i class="dot arrive"></i>Bugun keladi</span></div>
+        </div>
+        <div class="grid" id="roomGrid"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-h"><h2>Bugun kelish va ketishlar</h2></div>
+        <div class="today">
+          <div><h3>Bugun kelishlar (<span id="inCnt">0</span>)</h3><ul id="todayIn"></ul></div>
+          <div><h3>Bugun ketishlar (<span id="outCnt">0</span>)</h3><ul id="todayOut"></ul></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-h">
+          <h2>Band qilishlar</h2>
+          <div class="acts">
+            <button class="ghost" id="csvBtn" type="button">CSV yuklab olish</button>
+            <button class="btn sm" id="addBtn">+ Yangi band</button>
+          </div>
+        </div>
+        <div class="tools">
+          <input type="search" id="search" placeholder="Ism, telefon yoki xona raqami..." aria-label="Qidirish">
+          <select id="statusF" aria-label="Holat bo'yicha filtr">
+            <option value="active">Faol</option>
+            <option value="all">Hammasi</option>
+            <option value="cancelled">Bekor qilingan</option>
+            <option value="past">O'tgan</option>
+          </select>
+          <select id="typeF" aria-label="Xona turi bo'yicha filtr">
+            <option value="all">Barcha turlar</option>
+            <option value="standart">Standart</option>
+            <option value="deluxe">Deluxe</option>
+            <option value="lyuks">Lyuks</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">Band qilishlar ro'yxati. Xona, sana va summa ustunlari sarlavhasini bosib saralash mumkin.</caption>
+            <thead><tr>
+              <th scope="col" data-sort="room"><button type="button" class="sort">Xona</button></th>
+              <th scope="col">Mehmon</th><th scope="col">Telefon</th>
+              <th scope="col" data-sort="from"><button type="button" class="sort">Sana</button></th>
+              <th scope="col">Kecha</th>
+              <th scope="col" data-sort="total"><button type="button" class="sort">Summa</button></th>
+              <th scope="col">Holat</th><th scope="col">Manba</th><th scope="col"><span class="sr-only">Amallar</span></th>
+            </tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+          <p class="empty" id="empty" hidden>Hech narsa topilmadi</p>
+        </div>
+        <div class="more" id="more" hidden>
+          <span id="moreInfo"></span>
+          <button class="ghost" type="button" id="moreBtn">Yana ko'rsatish</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Yangi band oynasi -->
+  <dialog id="dlg" aria-labelledby="dlgTitle">
+    <form id="addForm" method="dialog" novalidate>
+      <h3 id="dlgTitle">Yangi band qilish</h3>
+      <label>Xona <select id="fRoom" required></select></label>
+      <div class="two">
+        <label>Kelish <input type="date" id="fFrom" required></label>
+        <label>Ketish <input type="date" id="fTo" required></label>
+      </div>
+      <label>Mehmon ismi <input type="text" id="fName" required maxlength="60"></label>
+      <label>Telefon <input type="tel" id="fPhone" required maxlength="25"></label>
+      <p class="err" id="fErr" role="alert"></p>
+      <div class="reauth" id="reauth" hidden>
+        <label>Qayta kirish uchun parol <input type="password" id="fPass" autocomplete="current-password"></label>
+        <button class="btn sm" type="button" id="fReauthBtn">Kirish</button>
+      </div>
+      <div class="actions">
+        <button class="ghost" type="button" id="fCancel">Bekor</button>
+        <button class="btn sm" type="submit" id="fSave">Saqlash</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Tasdiq oynasi -->
+  <dialog id="cdlg" class="small" aria-labelledby="cTitle">
+    <form method="dialog">
+      <h3 id="cTitle">Tasdiqlang</h3>
+      <p class="msg" id="cMsg"></p>
+      <div class="actions">
+        <button class="ghost" type="submit" value="cancel" id="cNo">Yo'q</button>
+        <button class="btn sm" type="submit" value="ok" id="cYes">Ha</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="admin.js"></script>
+</body>
+</html>
